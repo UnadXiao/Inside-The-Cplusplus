@@ -66,6 +66,14 @@ public:
 };
 allocator Foo::myAlloc;
 
+class Foo2 {
+public:
+	long L;
+	std::string str;
+public:
+	Foo2(long l) :L(l) {}
+};
+
 class Goo {
 public:
 	std::complex<double> c;
@@ -100,6 +108,15 @@ int main(int argc, char* argv[])
 		delete p[i];
 	}
 
+	Foo2* pFoo2[100];
+
+	std::cout << "sizeof(Foo2)=" << sizeof(Foo2) << std::endl;
+	for (int i = 0; i < 23; ++i)
+	{
+		pFoo2[i] = new Foo2(i);
+		std::cout << pFoo2[i] << ' ' << pFoo2[i]->L << std::endl;
+	}
+
 	Goo* pG[100];
 
 	std::cout << "sizeof(Goo)=" << sizeof(Goo) << std::endl;
@@ -109,7 +126,7 @@ int main(int argc, char* argv[])
 		std::cout << pG[i] << ' ' << pG[i]->c << std::endl;
 	}
 
-	for (int i = 0; i < 23; ++i)
+	for (int i = 0; i < 17; ++i)
 	{
 		delete pG[i];
 	}
